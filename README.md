@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# custom-graph-paper
+can design graph paper and edit the contents within it
+
 
 ## Available Scripts
 
