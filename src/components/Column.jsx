@@ -1,17 +1,21 @@
 import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { SketchPicker } from 'react-color'
+import { ChromePicker } from 'react-color'
 import { PaperContext } from './Paper'
 
 export default function Column() {
     const { numberOfRows, numberOfCols, groupApply } = useContext(PaperContext)
     const colorPickerRef = useRef()
 
-    const [isColorPickerOpen, toggleColorPicker] = useState(false)
-    const [color, setColor] = useState(false)
-    
+    const [colorPickerOpen, toggleColorPicker] = useState(false)
+    const [color, setColor] = useState({ hex: '#fff'})
+
     const openColorPicker = () => {
-        !isColorPickerOpen && toggleColorPicker(true)
+        if (groupApply.enable) {
+            setColor(groupApply.color)
+        } else {
+            !colorPickerOpen && toggleColorPicker(true)
+        }
     }
 
     const closeColorPicker = useCallback((event) => {
@@ -31,8 +35,8 @@ export default function Column() {
                 style={{...fill, backgroundColor: color.hex}}
                 onClick={openColorPicker}
             />
-            {isColorPickerOpen && (
-                <SketchPicker color={color} onChange={setColor} />
+            {colorPickerOpen && (
+                <ChromePicker color={color} onChange={setColor} />
             )}
         </div>
     )
@@ -42,7 +46,7 @@ export default function Column() {
 const col = {
     height: 20,
     width: 20,
-    border: '.1px solid black'
+    border: '1px solid black'
 }
 
 const fill = {
