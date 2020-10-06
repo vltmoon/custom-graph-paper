@@ -4,7 +4,7 @@ import { ChromePicker } from 'react-color'
 import { PaperContext } from './Paper'
 
 export default function Column() {
-    const { numberOfRows, numberOfCols, groupApply } = useContext(PaperContext)
+    const { numberOfRows, numberOfCols, groupApply, setUsedColors, usedColors } = useContext(PaperContext)
     const colorPickerRef = useRef()
 
     const [colorPickerOpen, toggleColorPicker] = useState(false)
@@ -20,9 +20,15 @@ export default function Column() {
 
     const closeColorPicker = useCallback((event) => {
         if (!colorPickerRef.current?.contains(event.target)) {
+            const duplicateColor = usedColors.some((usedColor) => usedColor.hex === color.hex)
+        
+            if (!duplicateColor) {
+                setUsedColors([...usedColors, color])
+            }
+
             toggleColorPicker(false)
         }
-    }, [colorPickerRef])
+    }, [colorPickerRef, color, usedColors])
 
     useEffect(() => {
         document.addEventListener('mousedown', closeColorPicker);
@@ -36,7 +42,7 @@ export default function Column() {
                 onClick={openColorPicker}
             />
             {colorPickerOpen && (
-                <ChromePicker color={color} onChange={setColor} />
+                <ChromePicker color={color} onChangeComplete={setColor}/>
             )}
         </div>
     )
