@@ -4,21 +4,19 @@ import { SketchPicker } from 'react-color'
 import { PaperContext } from './Paper'
 
 export default function Column() {
-    const { numberOfRows, numberOfCols } = useContext(PaperContext)
+    const { numberOfRows, numberOfCols, groupApply } = useContext(PaperContext)
     const colorPickerRef = useRef()
 
-    const [isColorPickerOpen, openColorPicker] = useState(false)
+    const [isColorPickerOpen, toggleColorPicker] = useState(false)
     const [color, setColor] = useState(false)
-
-    const toggleColorPicker = () => {
-        if (!isColorPickerOpen) {
-            openColorPicker(true)
-        }
+    
+    const openColorPicker = () => {
+        !isColorPickerOpen && toggleColorPicker(true)
     }
 
     const closeColorPicker = useCallback((event) => {
         if (!colorPickerRef.current?.contains(event.target)) {
-            openColorPicker(false)
+            toggleColorPicker(false)
         }
     }, [colorPickerRef])
 
@@ -31,7 +29,7 @@ export default function Column() {
         <div style={col} ref={colorPickerRef}>
             <div
                 style={{...fill, backgroundColor: color.hex}}
-                onClick={toggleColorPicker}
+                onClick={openColorPicker}
             />
             {isColorPickerOpen && (
                 <SketchPicker color={color} onChange={setColor} />

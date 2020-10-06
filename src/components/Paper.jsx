@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { SketchPicker } from 'react-color'
 import Rows from './Rows'
 
 const numberOfRows = 20
@@ -10,7 +9,14 @@ export const PaperContext = React.createContext({})
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
-    const contextValue = { numberOfCols, numberOfRows, setUsedColors }
+    const [groupApply, setGroupApply] = useState(false)
+    
+    const contextValue = {
+        numberOfCols,
+        numberOfRows,
+        setUsedColors,
+        groupApply
+    }
 
     return (
         <PaperContext.Provider value={contextValue}>
@@ -18,6 +24,8 @@ export default function Paper() {
                 <Rows />
             </div>
             <div>{usedColors}</div>
+            <input type='checkbox' id='groupApply' value={groupApply} onClick={() => setGroupApply(!groupApply)}/>
+            <label for='groupApply'>Group color apply</label>
         </PaperContext.Provider>
     );
 }
