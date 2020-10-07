@@ -8,7 +8,7 @@ export default function Column() {
     const colorPickerRef = useRef()
 
     const [colorPickerOpen, toggleColorPicker] = useState(false)
-    const [color, setColor] = useState({ hex: '#fff'})
+    const [color, setColor] = useState({ hex: ''})
 
     const openColorPicker = () => {
         if (groupApply.enable) {

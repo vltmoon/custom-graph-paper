@@ -3,27 +3,22 @@ import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color'
 import Rows from './Rows'
 
-const numberOfRows = 20
-const numberOfCols = 20
-
 export const PaperContext = React.createContext({})
 
 export default function Paper() {
-
     const [usedColors, setUsedColors] = useState([])
     const [colorPickerOpen, toggleColorPicker] = useState(false)
-    const [groupApply, setGroupApply] = useState({ color: { hex: '#000' }, enable: false })
+    const [groupApply, setGroupApply] = useState({ color: { hex: '' }, enable: false })
+    const [graphSize, setGraphSize] = useState({ rows: 20, cols: 20 })
 
-    
     const contextValue = {
-        numberOfCols,
-        numberOfRows,
+        numberOfCols: graphSize.cols,
+        numberOfRows: graphSize.rows,
         usedColors,
         setUsedColors,
         groupApply
     }
 
-    console.log(usedColors)
     const enableGroupApply = () => {
         setGroupApply({...groupApply, enable: !groupApply.enable })
     }
@@ -34,61 +29,54 @@ export default function Paper() {
 
     return (
         <PaperContext.Provider value={contextValue}>
-            <div style={appContainer}>
-                {/* Graph paper layout */}
+            <div style={{}}>
+                {/*--- Graph paper layout ---*/}
                 <div style={grid}>
                     <Rows />
                 </div>
-                
-                {/* List of most recent colors and corresponding swatch */}
-                <div>
-                    <div>Recently used colors:</div>
-                    {usedColors.map((color) => {
-                        return (
-                            <React.Fragment>
-                            <div style={{...swatchContainer, width: 'auto'}}>
-                                <div style={{ ...sampleSwatch, backgroundColor: color.hex }}>
-                                    <div style={{ color: 'white'}}>{color.hex}</div>
-                                </div>
-                            </div>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-            
+
+                {/*--- Bulk apply colors to grid without having to toggle each item ---*/}
+                <input type='checkbox' id='groupApply' value={groupApply} onClick={enableGroupApply}/>
+                <label htmlFor='groupApply'>Enable group color apply</label>
+
                 <div style={groupApplyContainer}>
-                    {/* Bulk apply colors to grid without having to toggle each item */}
-                    <input type='checkbox' id='groupApply' value={groupApply} onClick={enableGroupApply}/>
-                    <label htmlFor='groupApply'>Enable group color apply</label>
-
-                    <div style={{ display: 'flex', marginTop: '10px'}}>
-                        {/* Set bulk apply color with sample swatch */}
-                        <div style={swatchContainer}>
-                            <div style={{ ...sampleSwatch, backgroundColor: groupApply.color.hex }}/>
-                        </div>
-                        <button
-                            style={{ marginLeft: '10px'}}
-                            disabled={!groupApply.enable}
-                            onClick={() => toggleColorPicker(!colorPickerOpen)}>
-                            Select group color
-                        </button>
+                    {/*--- Set bulk apply color with sample swatch ---*/}
+                    <div style={swatchContainer}>
+                        <div style={{ ...sampleSwatch, backgroundColor: groupApply.color.hex }}/>
                     </div>
-
-                    {colorPickerOpen && (
-                        <ChromePicker color={groupApply.color} onChange={setGroupApplyColor} />
-                    )}
+                    <button
+                        style={{ marginLeft: '10px'}}
+                        disabled={!groupApply.enable}
+                        onClick={() => toggleColorPicker(!colorPickerOpen)}>
+                        Select group color
+                    </button>
                 </div>
+
+                {colorPickerOpen && (
+                    <ChromePicker color={groupApply.color} onChange={setGroupApplyColor} />
+                )}
+            </div>
+
+            {/*--- List of most recent colors and corresponding swatch ---*/}
+            <div>
+                <div>Recent colors:</div>
+                {usedColors.map((color, i) => {
+                    return color.hex && (
+                        <div key= {i} style={{...swatchContainer, width: 'auto'}}>
+                            <div style={{ ...sampleSwatch, backgroundColor: color.hex }}>
+                                <div style={{ color: 'white'}}>{color.hex}</div>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </PaperContext.Provider>
     );
 }
 
-const appContainer = {
-    display: 'flex'
-}
-
 const groupApplyContainer = {
-
+    display: 'flex',
+    marginTop: '10px'
 }
 
 const grid = {

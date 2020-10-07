@@ -1,16 +1,14 @@
 import React from 'react';
 import { Paper } from './components'
 
-function App() {
+export default function App() {
     return (
-        <div className={parentContainer}>
-            <Paper/>
-        </div>
-    );
+    	<div style={appContainer}>
+	    	<Paper/>
+    	</div>
+	);
 }
 
-export default App;
-
-const parentContainer = {
-
+const appContainer = {
+    display: 'flex'
 }
