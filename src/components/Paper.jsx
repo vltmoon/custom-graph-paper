@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color'
 import Rows from './Rows'
+import ResizeGraph from './ResizeGraph'
 
 export const PaperContext = React.createContext({})
+const confirmationText = 'are you sure you want to change this graph?\nyou might lose some your current work.'
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
@@ -12,11 +14,11 @@ export default function Paper() {
     const [graphSize, setGraphSize] = useState({ rows: 20, cols: 20 })
 
     const contextValue = {
-        numberOfCols: graphSize.cols,
-        numberOfRows: graphSize.rows,
         usedColors,
         setUsedColors,
-        groupApply
+        groupApply,
+        setGraphSize,
+        graphSize
     }
 
     const enableGroupApply = () => {
@@ -30,6 +32,9 @@ export default function Paper() {
     return (
         <PaperContext.Provider value={contextValue}>
             <div style={{}}>
+                
+                <ResizeGraph />
+
                 {/*--- Graph paper layout ---*/}
                 <div style={grid}>
                     <Rows />

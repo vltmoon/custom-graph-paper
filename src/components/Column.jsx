@@ -4,7 +4,7 @@ import { ChromePicker } from 'react-color'
 import { PaperContext } from './Paper'
 
 export default function Column() {
-    const { numberOfRows, numberOfCols, groupApply, setUsedColors, usedColors } = useContext(PaperContext)
+    const { groupApply, setUsedColors, usedColors } = useContext(PaperContext)
     const colorPickerRef = useRef()
 
     const [colorPickerOpen, toggleColorPicker] = useState(false)
