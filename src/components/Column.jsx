@@ -28,7 +28,7 @@ export default function Column() {
 
             toggleColorPicker(false)
         }
-    }, [colorPickerRef, color, usedColors])
+    }, [colorPickerRef, color, usedColors, setUsedColors])
 
     useEffect(() => {
         document.addEventListener('mousedown', closeColorPicker);
