@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash'
 import { PaperContext } from './Paper'
 
 
@@ -26,6 +27,7 @@ export default function ResizeGraph() {
     }
 
     const defaultInputProps = { type: 'number', min:'1', max: '100' }
+    const disableBtn = isEqual(graphSize, resize)
 
     return (
         <div style={{}}>
@@ -39,7 +41,7 @@ export default function ResizeGraph() {
                 value={resize.cols}
                 onChange={changeNumOfCols}/>
                 Cols
-            <button onClick={resizeGraph}>resize my paper</button>
+            <button onClick={resizeGraph} disabled={disableBtn}>resize my paper</button>
         </div>
     );
 }
