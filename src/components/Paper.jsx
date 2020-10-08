@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Rows from './Rows'
+import Grid from './Grid'
 import ResizeGraph from './ResizeGraph'
 import RecentlyUsedColors from './RecentlyUsedColors'
 import GroupColorApply from './GroupColorApply'
@@ -23,26 +23,21 @@ export default function Paper() {
 
     return (
         <PaperContext.Provider value={contextValue}>
-            <div style={{}}>
-                
-                <ResizeGraph />
-
-                {/*--- Graph paper layout ---*/}
-                <div style={grid}>
-                    <Rows />
+            <div style={appContainer}>
+                <div>
+                    <ResizeGraph />
+                    <Grid />
+                    <GroupColorApply />
                 </div>
 
-                <GroupColorApply />
-            </div>
-
-           <RecentlyUsedColors />
+               <RecentlyUsedColors />
+           </div>
         </PaperContext.Provider>
     );
 }
 
-const grid = {
-    display: 'flex',
-    flexFlow: 'column nowrap'
+const appContainer = {
+    display: 'flex'
 }
 
 Paper.propTypes = {
