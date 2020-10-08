@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { GridDesignerContext } from './Paper'
+import { PaperContext } from './Paper'
 
 export default function RecentlyUsedColors() {
-    const { usedColors } = useContext(GridDesignerContext)
+    const { usedColors } = useContext(PaperContext)
 
     return (
         <React.Fragment>
