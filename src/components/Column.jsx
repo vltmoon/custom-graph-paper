@@ -34,12 +34,28 @@ export default function Column() {
         document.addEventListener('mousedown', closeColorPicker);
         return () => document.removeEventListener('mousedown', closeColorPicker);
     });
+
+    const handleMouseDown = useCallback((e) => {
+        if (e.nativeEvent.which === 1 && groupApply.enable) {
+            let rgb
+
+            if (color.rgb) {
+                const { r, g, b } = color.rgb
+                rgb = `rgb(${r}, ${g}, ${b})`
+            }
+                
+            if (e.target.style.backgroundColor !== rgb) {
+                setColor(groupApply.color)
+            }
+        }
+    }, [groupApply, color])
     
     return (
         <div style={col} ref={colorPickerRef}>
             <div
                 style={{...fill, backgroundColor: color.hex}}
                 onClick={openColorPicker}
+                onMouseMove={handleMouseDown}
             />
             {colorPickerOpen && (
                 <ChromePicker color={color} onChangeComplete={setColor}/>
