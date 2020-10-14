@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color'
-import { PaperContext } from './Paper'
+import { PaperContext } from '../../Paper'
 
 export default function Column() {
     const { groupApply, setUsedColors, usedColors } = useContext(PaperContext)

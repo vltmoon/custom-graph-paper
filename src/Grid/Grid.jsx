@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext } from './Paper'
-import Column from './Column'
+import { PaperContext } from '../Paper'
+import { Column } from './components'
 
 export default function Grid() {
 	const { graphSize } = useContext(PaperContext)

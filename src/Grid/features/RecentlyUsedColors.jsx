@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext } from './Paper'
+import { PaperContext } from '../../Paper'
 
 export default function RecentlyUsedColors() {
     const { usedColors } = useContext(PaperContext)
