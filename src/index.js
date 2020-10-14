@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import Paper from './Paper';
 
-const store = createStore(reducer)
-
 ReactDOM.render(
   <React.StrictMode>
 	    <Paper />
