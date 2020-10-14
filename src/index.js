@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import App from './App';
-import reducer from './store/reducers'
+import Paper from './Paper';
 
 const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
-  	<Provider store={store}>
-	    <App />
-    </Provider>
+	    <Paper />
   </React.StrictMode>,
   document.getElementById('root')
 );
