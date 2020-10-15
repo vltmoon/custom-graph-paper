@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from './Grid'
-import { ResizeGraph, RecentlyUsedColors, GroupColorApply } from './Grid/features'
+import { ResizeGraph, RecentlyUsedColors, GroupColorApply, Erase } from './Grid/features'
 
 export const PaperContext = React.createContext({})
+export const defaultGroupColorState = { color: { hex: '' }, enable: false }
+export const defaultSize = { rows: 20, cols: 20 }
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
-    const [groupApply, setGroupApply] = useState({ color: { hex: '' }, enable: false })
-    const [graphSize, setGraphSize] = useState({ rows: 20, cols: 20 })
+    const [groupApply, setGroupApply] = useState(defaultGroupColorState)
+    const [graphSize, setGraphSize] = useState(defaultSize)
+    const [eraseEnabled, setEraseEnabled] = useState(false)
 
     const contextValue = {
         usedColors,
@@ -16,7 +19,9 @@ export default function Paper() {
         groupApply,
         setGraphSize,
         graphSize,
-        setGroupApply
+        setGroupApply,
+        eraseEnabled,
+        setEraseEnabled
     }
 
     return (
@@ -26,16 +31,18 @@ export default function Paper() {
                     <ResizeGraph />
                     <Grid />
                     <GroupColorApply />
+                    <Erase />
                 </div>
 
                <RecentlyUsedColors />
            </div>
+           <a target="_blank" href="https://icons8.com/icons/set/erase">Erase icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
         </PaperContext.Provider>
     );
 }
 
 const appContainer = {
-    display: 'flex'
+    display: 'flex',
 }
 
 Paper.propTypes = {

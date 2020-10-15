@@ -37,19 +37,9 @@ export default function Column() {
 
     const handleMouseDown = useCallback((e) => {
         if (e.nativeEvent.which === 1 && groupApply.enable) {
-            let rgb
-
-            if (color.rgb) {
-                const { r, g, b } = color.rgb
-                rgb = `rgb(${r}, ${g}, ${b})`
-            }
-            console.log(rgb, e.target.style.backgroundColor)
-            if (e.target.style.backgroundColor !== rgb) {
-            console.log(rgb, e.target.style.backgroundColor)
-            }
-                setColor(groupApply.color)
+            setColor(groupApply.color)
         }
-    }, [groupApply, color])
+    }, [groupApply])
     
     return (
         <div style={col} ref={colorPickerRef}>
