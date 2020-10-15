@@ -1,17 +1,19 @@
 import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color'
-import { PaperContext } from '../../Paper'
+import { PaperContext, defaultGroupColorState } from '../../Paper'
 
 export default function Column() {
-    const { groupApply, setUsedColors, usedColors } = useContext(PaperContext)
+    const { groupApply, setUsedColors, usedColors, eraseEnabled } = useContext(PaperContext)
     const colorPickerRef = useRef()
 
     const [colorPickerOpen, toggleColorPicker] = useState(false)
     const [color, setColor] = useState({ hex: ''})
 
     const openColorPicker = () => {
-        if (groupApply.enable) {
+        if (eraseEnabled) {
+            setColor(defaultGroupColorState.color)
+        } else if (groupApply.enable) {
             setColor(groupApply.color)
         } else {
             !colorPickerOpen && toggleColorPicker(true)
@@ -36,10 +38,16 @@ export default function Column() {
     });
 
     const handleMouseDown = useCallback((e) => {
-        if (e.nativeEvent.which === 1 && groupApply.enable) {
-            setColor(groupApply.color)
+        if (e.nativeEvent.which === 1 && (groupApply.enable || eraseEnabled)) {
+            if (groupApply.enable) {
+                setColor(groupApply.color)
+            }
+
+            if (eraseEnabled) {
+                setColor(defaultGroupColorState.color)   
+            }
         }
-    }, [groupApply])
+    }, [groupApply, eraseEnabled])
     
     return (
         <div style={col} ref={colorPickerRef}>
