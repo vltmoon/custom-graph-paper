@@ -43,10 +43,11 @@ export default function Column() {
                 const { r, g, b } = color.rgb
                 rgb = `rgb(${r}, ${g}, ${b})`
             }
-                
+            console.log(rgb, e.target.style.backgroundColor)
             if (e.target.style.backgroundColor !== rgb) {
-                setColor(groupApply.color)
+            console.log(rgb, e.target.style.backgroundColor)
             }
+                setColor(groupApply.color)
         }
     }, [groupApply, color])
     
