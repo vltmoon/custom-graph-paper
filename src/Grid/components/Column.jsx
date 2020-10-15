@@ -1,12 +1,11 @@
-import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { ChromePicker } from 'react-color'
+import { BlockPicker } from 'react-color'
 import { PaperContext, defaultGroupColorState } from '../../Paper'
+import ColorPicker from '../features/ColorPicker'
 
 export default function Column() {
-    const { groupApply, setUsedColors, usedColors, eraseEnabled } = useContext(PaperContext)
-    const colorPickerRef = useRef()
-
+    const { groupApply, eraseEnabled } = useContext(PaperContext)
     const [colorPickerOpen, toggleColorPicker] = useState(false)
     const [color, setColor] = useState({ hex: ''})
 
@@ -15,27 +14,12 @@ export default function Column() {
             setColor(defaultGroupColorState.color)
         } else if (groupApply.enable) {
             setColor(groupApply.color)
+        } else if (!colorPickerOpen) {
+            toggleColorPicker(true)
         } else {
-            !colorPickerOpen && toggleColorPicker(true)
-        }
-    }
-
-    const closeColorPicker = useCallback((event) => {
-        if (!colorPickerRef.current?.contains(event.target)) {
-            const duplicateColor = usedColors.some((usedColor) => usedColor.hex === color.hex)
-        
-            if (!duplicateColor) {
-                setUsedColors([...usedColors, color])
-            }
-
             toggleColorPicker(false)
         }
-    }, [colorPickerRef, color, usedColors, setUsedColors])
-
-    useEffect(() => {
-        document.addEventListener('mousedown', closeColorPicker);
-        return () => document.removeEventListener('mousedown', closeColorPicker);
-    });
+    }
 
     const handleMouseDown = useCallback((e) => {
         if (e.nativeEvent.which === 1 && (groupApply.enable || eraseEnabled)) {
@@ -48,17 +32,22 @@ export default function Column() {
             }
         }
     }, [groupApply, eraseEnabled])
+
+    const colorPickerProps = {
+        color,
+        open: colorPickerOpen,
+        selectColor: setColor,
+        close: () => toggleColorPicker(false)
+    }
     
     return (
-        <div style={col} ref={colorPickerRef}>
+        <div style={col}>
             <div
                 style={{...fill, backgroundColor: color.hex}}
                 onClick={openColorPicker}
                 onMouseMove={handleMouseDown}
             />
-            {colorPickerOpen && (
-                <ChromePicker color={color} onChangeComplete={setColor}/>
-            )}
+            <ColorPicker {...colorPickerProps} />
         </div>
     )
 
