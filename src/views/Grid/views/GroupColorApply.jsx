@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext } from '../../Paper'
+import { PaperContext } from '../../../Paper'
 import { ChromePicker } from 'react-color'
 
 export default function GroupColorApply() {

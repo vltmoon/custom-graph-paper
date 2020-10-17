@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash'
-import { PaperContext } from '../../Paper'
-
+import { PaperContext } from '../../../Paper'
 
 const confirmationText = 'Are you sure you want to change this graph?\nYou might lose some your current work.'
 

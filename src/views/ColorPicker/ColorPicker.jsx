@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color'
-import { PaperContext, defaultGroupColorState } from '../../../Paper'
+import { PaperContext, defaultGroupColorState } from '../../Paper'
 
 export default function ColorPicker(props) {
     const { open, color, selectColor, close } = props

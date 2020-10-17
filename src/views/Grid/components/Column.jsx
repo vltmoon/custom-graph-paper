@@ -1,8 +1,8 @@
 import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { BlockPicker } from 'react-color'
-import { PaperContext, defaultGroupColorState } from '../../Paper'
-import ColorPicker from '../features/ColorPicker'
+import { PaperContext, defaultGroupColorState } from '../../../Paper'
+import ColorPicker from '../../ColorPicker'
 
 export default function Column() {
     const { groupApply, eraseEnabled } = useContext(PaperContext)

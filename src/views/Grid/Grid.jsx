@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext } from '../Paper'
+import { PaperContext } from '../../Paper'
 import { Column } from './components'
-import eraserIcon from '../styles/imgs/eraser.png'
+import eraserIcon from '../../styles/imgs/eraser.png'
 
 export default function Grid() {
 	const { graphSize, eraseEnabled } = useContext(PaperContext)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Grid from './Grid'
-import { ResizeGraph, RecentlyUsedColors, GroupColorApply, Erase } from './Grid/features'
+import { Grid, ResizeGraph, GroupColorApply, Erase } from './views/Grid'
+import { RecentColors } from './views'
 
 export const PaperContext = React.createContext({})
 export const defaultGroupColorState = { color: { hex: '' }, enable: false }
@@ -26,7 +26,7 @@ export default function Paper() {
 
     return (
         <PaperContext.Provider value={contextValue}>
-            <div style={appContainer}>
+            <div style={parentContainer}>
                 <div>
                     <ResizeGraph />
                     <Grid />
@@ -34,7 +34,7 @@ export default function Paper() {
                     <Erase />
                 </div>
 
-               <RecentlyUsedColors />
+               <RecentColors />
            </div>
            <div>
                <a target="_blank" href="https://icons8.com/icons/set/erase">Erase icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
@@ -43,7 +43,7 @@ export default function Paper() {
     );
 }
 
-const appContainer = {
+const parentContainer = {
     display: 'flex',
 }
 
