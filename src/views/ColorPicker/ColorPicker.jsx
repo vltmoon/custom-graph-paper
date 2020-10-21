@@ -1,35 +1,36 @@
 import React, { useContext, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { TwitterPicker } from 'react-color'
-import { PaperContext, defaultGroupColorState } from '../../Paper'
+import { SketchPicker } from 'react-color'
+import { PaperContext } from '../../Paper'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 export default function ColorPicker(props) {
     const { open, color, selectColor, close } = props
     const { usedColors, setUsedColors } = useContext(PaperContext)
-    const ref = useRef()
+    
+    const presetColors = usedColors.map((color) => color.hex).reverse().slice(0, 6)
 
     const closeColorPicker = useCallback((event) => {
-        if (!ref.current?.contains(event.target)) {
-            const duplicateColor = usedColors.some((usedColor) => usedColor.hex === color.hex)
-        
-            if (!duplicateColor) {
-                setUsedColors([...usedColors, color])
-            }
-
-            close()
+        const duplicateColor = usedColors.some((usedColor) => usedColor.hex === color.hex)
+    
+        if (!duplicateColor) {
+            setUsedColors([...usedColors, color])
         }
 
-    }, [ref, color, close, usedColors, setUsedColors])
+        close()
 
-    useEffect(() => {
-        document.addEventListener('mousedown', closeColorPicker);
-        return () => document.removeEventListener('mousedown', closeColorPicker);
-    });
+    }, [color, close, usedColors, setUsedColors])
 
     return open && (
-        <div ref={ref} style={twitterContainer}>
-            <TwitterPicker color={color} onChangeComplete={selectColor} />
-        </div>
+        <ClickAwayListener onClickAway={closeColorPicker}>
+            <SketchPicker
+                disableAlpha={true}
+                width={150}
+                presetColors={presetColors}
+                color={color}
+                onChange={selectColor}
+            />
+        </ClickAwayListener>
     )
 }
 
