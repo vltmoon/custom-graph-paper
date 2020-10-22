@@ -34,11 +34,6 @@ export default function ColorPicker(props) {
     )
 }
 
-const twitterContainer = {
-    right: '10px',
-    position: 'relative',
-}
-
 ColorPicker.propTypes = {
     open: PropTypes.bool,
     ref: PropTypes.node,

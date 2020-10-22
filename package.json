@@ -23,7 +23,14 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+       "es6": true
+    },
+    "rules": {
+      "no-console": "error",
+      "no-unused-vars": "error"
+    }
   },
   "browserslist": {
     "production": [
