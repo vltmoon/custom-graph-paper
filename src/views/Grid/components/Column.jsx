@@ -1,6 +1,5 @@
 import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { BlockPicker } from 'react-color'
 import { PaperContext, defaultGroupColorState } from '../../../Paper'
 import ColorPicker from '../../ColorPicker'
 
@@ -21,7 +20,7 @@ export default function Column() {
         }
     }
 
-    const handleMouseDown = useCallback((e) => {
+    const eraseOrApplyColor = useCallback((e) => {
         if (e.nativeEvent.which === 1 && (groupApply.enable || eraseEnabled)) {
             if (groupApply.enable) {
                 setColor(groupApply.color)
@@ -45,7 +44,7 @@ export default function Column() {
             <div
                 style={{...fill, backgroundColor: color.hex}}
                 onClick={openColorPicker}
-                onMouseMove={handleMouseDown}
+                onMouseMove={eraseOrApplyColor}
             />
             <ColorPicker {...colorPickerProps} />
         </div>
