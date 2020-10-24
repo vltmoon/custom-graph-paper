@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext, defaultGroupColorState } from '../../../Paper'
+import { PaperContext } from '../../../Paper'
 
 export default function Erase() {
     const { eraseEnabled, setEraseEnabled } = useContext(PaperContext)
