@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import ColorPicker from '../../ColorPicker'
 import { PaperContext } from '../../../Paper'
-import { ChromePicker } from 'react-color'
 
 export default function GroupColorApply() {
     const { groupApply, setGroupApply } = useContext(PaperContext)
@@ -15,14 +15,20 @@ export default function GroupColorApply() {
         setGroupApply({...groupApply, color })
     }
 
+    const colorPickerProps = {
+        color: groupApply.color,
+        open: colorPickerOpen,
+        selectColor: setGroupApplyColor,
+        close: () => toggleColorPicker(false)
+    }
+
     return (
         <React.Fragment>
-            {/*--- Bulk apply colors to grid without having to toggle each item ---*/}
+            
                 <input type='checkbox' id='groupApply' value={groupApply} onClick={enableGroupApply}/>
                 <label htmlFor='groupApply'>Enable group color apply</label>
 
                 <div style={groupApplyContainer}>
-                    {/*--- Set bulk apply color with sample swatch ---*/}
                     <div style={swatchContainer}>
                         <div style={{ ...sampleSwatch, backgroundColor: groupApply.color.hex }}/>
                     </div>
@@ -34,9 +40,7 @@ export default function GroupColorApply() {
                     </button>
                 </div>
 
-                {colorPickerOpen && (
-                    <ChromePicker color={groupApply.color} onChange={setGroupApplyColor} />
-                )}
+                <ColorPicker {...colorPickerProps} />
         </React.Fragment>
     )
 }
