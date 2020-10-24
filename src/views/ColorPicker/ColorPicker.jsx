@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useEffect, useRef } from 'react';
+import React, { useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color'
 import { PaperContext } from '../../Paper'
@@ -12,7 +12,7 @@ export default function ColorPicker(props) {
 
     const closeColorPicker = useCallback((event) => {
         const duplicateColor = usedColors.some((usedColor) => usedColor.hex === color.hex)
-    
+        
         if (!duplicateColor) {
             setUsedColors([...usedColors, color])
         }
@@ -23,15 +23,21 @@ export default function ColorPicker(props) {
 
     return open && (
         <ClickAwayListener onClickAway={closeColorPicker}>
-            <SketchPicker
-                disableAlpha={true}
-                width={150}
-                presetColors={presetColors}
-                color={color}
-                onChange={selectColor}
-            />
+            <div style={wrapper}>
+                <SketchPicker
+                    disableAlpha={true}
+                    width={150}
+                    presetColors={presetColors}
+                    color={color}
+                    onChange={selectColor}
+                />
+            </div>
         </ClickAwayListener>
     )
+}
+
+const wrapper = {
+    position: 'relative'
 }
 
 ColorPicker.propTypes = {
