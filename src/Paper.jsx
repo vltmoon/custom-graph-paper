@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, ResizeGraph, GroupColorApply, Erase } from './views/Grid'
-import { RecentColors } from './views'
+import { RecentColors, Sidebar, Footer } from './views'
 
 export const PaperContext = React.createContext({})
 export const defaultGroupColorState = { color: { hex: '' }, enable: false }
@@ -26,25 +26,39 @@ export default function Paper() {
 
     return (
         <PaperContext.Provider value={contextValue}>
-            <div style={parentContainer}>
-                <div>
-                    <ResizeGraph />
-                    <Grid />
-                    <GroupColorApply />
-                    <Erase />
-                </div>
+            <div style={parent}>
+                <Sidebar />
 
-               <RecentColors />
-           </div>
-           <div>
-               <a target="_blank" href="https://icons8.com/icons/set/erase">Erase icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+                <div style={body}>
+                    <div style={grid}>
+                        <ResizeGraph />
+                        <Grid />
+                        <GroupColorApply />
+                        <Erase />
+                    </div>
+
+                   <RecentColors />
+               </div>
            </div>
         </PaperContext.Provider>
     );
 }
 
-const parentContainer = {
+const parent = {
     display: 'flex',
+    height: '100vh',
+    fontFamily: 'Beth Ellen',
+    fontSize: '14px',
+}
+
+const body = {
+    display: 'flex'
+}
+
+const grid = {
+    fontFamily: 'Commissioner',
+    padding: '20px',
+    fontSize: '13px',
 }
 
 Paper.propTypes = {
