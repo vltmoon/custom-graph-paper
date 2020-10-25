@@ -53,12 +53,11 @@ export default function Column() {
 }
 
 const col = {
+    border: '1px solid black',
     height: 20,
     width: 20,
-    border: '1px solid black'
 }
 
 const fill = {
-    width: '100%',
-    height: '100%',
+    width: 20,
 }

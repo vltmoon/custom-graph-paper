@@ -22,11 +22,20 @@ export default function Grid() {
 
 const grid = {
     display: 'flex',
-    flexFlow: 'column nowrap'
+    flexFlow: 'column nowrap',
+    width: 880,
+    height: 330,
+    margin: 20,
+    padding: 20,
+    overflowY: 'scroll',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
 }
 
 const row = {
-     display: 'flex',
-     flexFlow: 'row nowrap'
-
+    display: 'flex',
+    flexFlow: 'row nowrap',
+	width: '100%',
+	// zoom: 0.5
 }

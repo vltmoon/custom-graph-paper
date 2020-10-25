@@ -5,7 +5,7 @@ import { RecentColors, Sidebar, Footer } from './views'
 
 export const PaperContext = React.createContext({})
 export const defaultGroupColorState = { color: { hex: '' }, enable: false }
-export const defaultSize = { rows: 20, cols: 20 }
+export const defaultSize = { rows: 15, cols: 40 }
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
