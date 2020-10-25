@@ -8,7 +8,9 @@ export default function Sidebar() {
     return (
         <div style={parent}>
             <Logo />
-            <GetAppIcon />
+            <button>
+                <GetAppIcon />
+            </button>
             <Footer />
         </div>
     )
@@ -24,3 +26,6 @@ const parent = {
     alignItems: 'center',
     flexDirection: 'column',
 }
+
+
+// #ac9600 #e4b3b3
