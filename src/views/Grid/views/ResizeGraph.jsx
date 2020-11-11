@@ -29,7 +29,7 @@ export default function ResizeGraph() {
     const disableBtn = isEqual(graphSize, resize)
 
     return (
-        <div style={{}}>
+        <div style={parent}>
             <input
                 {...defaultInputProps}
                 value={resize.rows}
@@ -43,4 +43,16 @@ export default function ResizeGraph() {
             <button onClick={resizeGraph} disabled={disableBtn}>resize my paper</button>
         </div>
     );
+}
+
+const parent = {
+    margin: 20,
+    marginTop: 0,
+    padding: 20,
+    height: 70,
+    width: 243,
+
+    boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
+    backgroundColor: 'white'
+
 }

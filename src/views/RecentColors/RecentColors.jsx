@@ -37,18 +37,24 @@ const parent = {
     height: 300,
     borderRadius: 3,
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
+    backgroundColor: '#ecd6d0'
 }
 
 const title = {
-    border: '2px solid black',
-    width: '96%',
+    // border: '2px solid black',
+    // width: '96%',
+    margin: -20,
+    padding: 10,
+    // backgroundColor: '#E8D9D9',
+    // backgroundColor: '#c3612c',
     textAlign: 'center',
-    backgroundColor: 'white',
+    // color: 'white',
 }
 
 const colors = {
     display: 'flex',
     flexWrap: 'wrap',
+    overflow: 'scroll'
 }
 
 const swatchContainer = {

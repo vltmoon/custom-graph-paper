@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { PaperContext, defaultGroupColorState } from '../../../Paper'
+import { PaperContext } from '../../../Paper'
 import ColorPicker from '../../ColorPicker'
 
 export default function Column() {
@@ -10,7 +10,7 @@ export default function Column() {
 
     const openColorPicker = () => {
         if (eraseEnabled) {
-            setColor(defaultGroupColorState.color)
+            setColor('#fff')
         } else if (groupApply.enable) {
             setColor(groupApply.color)
         } else if (!colorPickerOpen) {
@@ -27,7 +27,7 @@ export default function Column() {
             }
 
             if (eraseEnabled) {
-                setColor(defaultGroupColorState.color)   
+                setColor('#fff')   
             }
         }
     }, [groupApply, eraseEnabled])
@@ -54,10 +54,11 @@ export default function Column() {
 
 const col = {
     border: '1px solid black',
-    height: 20,
-    width: 20,
+    height: 15,
+    width: 15,
 }
 
 const fill = {
-    width: 20,
+    width: 15,
+    height: 15,
 }

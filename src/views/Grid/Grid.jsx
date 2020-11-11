@@ -21,16 +21,16 @@ export default function Grid() {
 }
 
 const grid = {
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    width: 880,
-    height: 330,
-    margin: 20,
-    padding: 20,
+    // display: 'flex',
+    // flexFlow: 'column nowrap',
+    // width: '100%',
+    // height: '100%',
+    // padding: 20,
     overflowY: 'scroll',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
+    backgroundColor: 'white',
 }
 
 const row = {

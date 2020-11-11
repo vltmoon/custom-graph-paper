@@ -37,7 +37,7 @@ export default function ColorPicker(props) {
 }
 
 const wrapper = {
-    position: 'relative'
+    position: 'absolute'
 }
 
 ColorPicker.propTypes = {

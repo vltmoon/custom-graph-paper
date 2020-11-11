@@ -24,20 +24,19 @@ export default function GroupColorApply() {
 
     return (
         <React.Fragment>
-            
                 <input type='checkbox' id='groupApply' value={groupApply} onClick={enableGroupApply}/>
                 <label htmlFor='groupApply'>Enable group color apply</label>
 
                 <div style={groupApplyContainer}>
-                    <div style={swatchContainer}>
+                    <div style={swatchContainer} onClick={() => toggleColorPicker(!colorPickerOpen)}>
                         <div style={{ ...sampleSwatch, backgroundColor: groupApply.color.hex }}/>
                     </div>
-                    <button
+                    {/*<button
                         style={{ marginLeft: '10px'}}
                         disabled={!groupApply.enable}
                         onClick={() => toggleColorPicker(!colorPickerOpen)}>
                         Select group color
-                    </button>
+                    </button>*/}
                 </div>
 
                 <ColorPicker {...colorPickerProps} />
@@ -55,6 +54,7 @@ const swatchContainer = {
     width: 20,
     boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, .2)',
     border: '3px solid white',
+    borderRadius: 3
 }
 
 const sampleSwatch = {
