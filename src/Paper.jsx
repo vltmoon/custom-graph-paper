@@ -5,7 +5,7 @@ import { RecentColors, Sidebar, Footer } from './views'
 
 export const PaperContext = React.createContext({})
 export const defaultGroupColorState = { color: { hex: '#000' }, enable: false }
-export const defaultSize = { rows: 30, cols: 30 }
+export const defaultSize = { rows: 14, cols: 47 }
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
@@ -26,33 +26,31 @@ export default function Paper() {
 
     return (
         <PaperContext.Provider value={contextValue}>
-            <div style={parent}>
+            <div style={container}>
                 {/*<Sidebar />*/}
                 <div style={body}>
-                    <div style={grid}>
-                        <Grid />
+                    <div style={{ fontSize: 30, alignSelf: 'center' }}>
+                        gridesigner
                     </div>
-                    <div style={features}>
-                        <div style={{ fontSize: 30, alignSelf: 'flex-end' }}>
-                            gridesigner.
-                        </div>
-                        <div style={gridFeatures}>
-                            <GroupColorApply />
-                            <Erase />
-                        </div>
+                    
+                    <div style={colorFeatures}>
+                        <GroupColorApply />
+                        <Erase />
+                    </div>
+
+                    <Grid />
+
+                    <div style={gridFeatures}>
                         <RecentColors />
                         <ResizeGraph />
                     </div>
                </div>
-               {/*<div style={{width: '100%', display: 'flex', justifyContent: 'flex-end', height: 60}}>
-                    
-                </div>*/}
            </div>
         </PaperContext.Provider>
     );
 }
 
-const parent = {
+const container = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -66,23 +64,25 @@ const parent = {
 }
 
 const body = {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column',
+    height: 1280,
+    width: 800,
 }
 
-const grid = {    
-    margin: 20,
-    fontSize: 13,
-    width: 510,
-    height: 600
+const colorFeatures = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: 40,
+    width: '100%',
+    marginTop: 20,
+
+
 }
 
 const gridFeatures = {
     display: 'flex',
-}
-
-const features = {
-    display: 'flex',
-    flexFlow: 'column nowrap'
+    marginTop: 20
 }
 
 Paper.propTypes = {

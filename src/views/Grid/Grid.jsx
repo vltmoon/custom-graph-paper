@@ -10,27 +10,34 @@ export default function Grid() {
 	const Columns = [...Array(graphSize.cols)].map((el, i) => <Column key={i} />)
 
 	return (
-		<div style={{...grid, cursor: eraseEnabled && `url(${eraserIcon}), auto`}}>
-		    {[...Array(graphSize.rows)].map((el, i) => (
-		        <div style={row} key={i}>
-		            {Columns}
-		        </div>
-		    ))}
+		<div style={container}>
+			<div style={{...grid, cursor: eraseEnabled && `url(${eraserIcon}), auto`}}>
+			    {[...Array(graphSize.rows)].map((el, i) => (
+			        <div style={row} key={i}>
+			            {Columns}
+			        </div>
+			    ))}
+		    </div>
 	    </div>
 	)
 }
 
+const container = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 800,
+    height: 250,
+
+    // border: 'solid black 1px',
+    marginTop: 20,
+    fontSize: 13,	
+}
+
 const grid = {
-    // display: 'flex',
-    // flexFlow: 'column nowrap',
-    // width: '100%',
-    // height: '100%',
-    // padding: 20,
     overflowY: 'scroll',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
-    backgroundColor: 'white',
+    // boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
+    // backgroundColor: 'red',
 }
 
 const row = {

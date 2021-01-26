@@ -46,13 +46,12 @@ export default function ResizeGraph() {
 }
 
 const parent = {
-    margin: 20,
-    marginTop: 0,
+    marginRight: 20,
     padding: 20,
     height: 70,
-    width: 243,
+    width: 240,
 
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
-    backgroundColor: 'white'
+    backgroundColor: '#f7f7f7'
 
 }

@@ -23,21 +23,16 @@ export default function RecentColors() {
     )
 }
 
-// #a27777
-// #cb9e9e
-// #bd8888
-// #a28585
-
 const parent = {
     display: 'flex',
     flexDirection: 'column',
-    margin: 20,
-    width: 243,
+    marginRight: 20,
+    width: 240,
     padding: 20,
-    height: 300,
+    height: 200,
     borderRadius: 3,
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
-    backgroundColor: '#ecd6d0'
+    backgroundColor: '#edefe7'
 }
 
 const title = {
