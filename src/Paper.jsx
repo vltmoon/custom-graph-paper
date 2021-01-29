@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, ResizeGraph, GroupColorApply, Erase } from './views/Grid'
-import { RecentColors, Sidebar, Footer } from './views'
+import { RecentColors, Header, Footer } from './views'
 
 export const PaperContext = React.createContext({})
 export const defaultGroupColorState = { color: { hex: '' }, enable: false }
@@ -28,10 +28,8 @@ export default function Paper() {
         <PaperContext.Provider value={contextValue}>
             <div style={container}>
                 <div style={body}>
-                    <div style={{ fontSize: 30, alignSelf: 'center' }}>
-                        gridesigner
-                    </div>
-                    
+                    <Header />
+
                     <div style={colorFeatures}>
                         <GroupColorApply />
                         <Erase />
@@ -58,7 +56,7 @@ const container = {
     width: '100%',
     // backgroundColor: '#ece9d4',
     // backgroundColor: '#ac9600',
-    fontFamily: 'Beth Ellen',
+    fontFamily: 'Commissioner',
     fontSize: '14px',
 }
 
@@ -75,8 +73,6 @@ const colorFeatures = {
     height: 40,
     width: '100%',
     marginTop: 20,
-
-
 }
 
 const gridFeatures = {

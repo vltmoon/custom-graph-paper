@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Footer() {
-
     return (
     	<div style={parent}>
     		<div style={content}>
