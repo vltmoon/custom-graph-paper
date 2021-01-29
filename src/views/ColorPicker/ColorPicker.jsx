@@ -1,12 +1,12 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color'
 import { PaperContext } from '../../Paper'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 export default function ColorPicker(props) {
     const { open, color, selectColor, close } = props
     const { usedColors, setUsedColors } = useContext(PaperContext)
+    const ref = useRef()
     
     const presetColors = usedColors.map((color) => color.hex).reverse().slice(0, 6)
 
@@ -21,18 +21,21 @@ export default function ColorPicker(props) {
 
     }, [color, close, usedColors, setUsedColors])
 
+     useEffect(() => {
+        document.addEventListener('mousedown', closeColorPicker);
+        return () => document.removeEventListener('mousedown', closeColorPicker);
+    });
+
     return open && (
-        <ClickAwayListener onClickAway={closeColorPicker}>
-            <div style={wrapper}>
-                <SketchPicker
-                    disableAlpha={true}
-                    width={150}
-                    presetColors={presetColors}
-                    color={color}
-                    onChange={selectColor}
-                />
-            </div>
-        </ClickAwayListener>
+        <div style={wrapper} ref={ref}>
+            <SketchPicker
+                disableAlpha={true}
+                width={150}
+                presetColors={presetColors}
+                color={color}
+                onChange={selectColor}
+            />
+        </div>
     )
 }
 

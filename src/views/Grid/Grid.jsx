@@ -26,10 +26,10 @@ const container = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
     width: 800,
     height: 250,
 
-    // border: 'solid black 1px',
     marginTop: 20,
     fontSize: 13,	
 }

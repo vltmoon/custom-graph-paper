@@ -27,7 +27,6 @@ export default function Paper() {
     return (
         <PaperContext.Provider value={contextValue}>
             <div style={container}>
-                {/*<Sidebar />*/}
                 <div style={body}>
                     <div style={{ fontSize: 30, alignSelf: 'center' }}>
                         gridesigner
