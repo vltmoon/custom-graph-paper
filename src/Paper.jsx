@@ -4,7 +4,7 @@ import { Grid, ResizeGraph, GroupColorApply, Erase } from './views/Grid'
 import { RecentColors, Sidebar, Footer } from './views'
 
 export const PaperContext = React.createContext({})
-export const defaultGroupColorState = { color: { hex: '#000' }, enable: false }
+export const defaultGroupColorState = { color: { hex: '' }, enable: false }
 export const defaultSize = { rows: 14, cols: 47 }
 
 export default function Paper() {

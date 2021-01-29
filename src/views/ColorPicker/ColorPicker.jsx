@@ -18,13 +18,12 @@ export default function ColorPicker(props) {
         }
 
         close()
-
     }, [color, close, usedColors, setUsedColors])
 
      useEffect(() => {
         document.addEventListener('mousedown', closeColorPicker);
         return () => document.removeEventListener('mousedown', closeColorPicker);
-    });
+    }, [close]);
 
     return open && (
         <div style={wrapper} ref={ref}>
