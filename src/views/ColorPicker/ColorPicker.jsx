@@ -23,7 +23,7 @@ export default function ColorPicker(props) {
      useEffect(() => {
         document.addEventListener('mousedown', closeColorPicker);
         return () => document.removeEventListener('mousedown', closeColorPicker);
-    }, [close]);
+    }, [close, closeColorPicker]);
 
     return open && (
         <div style={wrapper} ref={ref}>

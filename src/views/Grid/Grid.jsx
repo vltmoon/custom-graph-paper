@@ -41,5 +41,4 @@ const row = {
     display: 'flex',
     flexFlow: 'row nowrap',
 	width: '100%',
-	// zoom: 0.5
 }
