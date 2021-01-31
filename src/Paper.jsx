@@ -56,7 +56,7 @@ const container = {
     width: '100%',
     // backgroundColor: '#ece9d4',
     // backgroundColor: '#ac9600',
-    fontFamily: 'Commissioner',
+    fontFamily: 'Poppins',
     fontSize: '14px',
 }
 
