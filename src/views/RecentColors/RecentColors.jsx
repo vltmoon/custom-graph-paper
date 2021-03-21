@@ -38,8 +38,7 @@ const parent = {
 const title = {
     // border: '2px solid black',
     // width: '96%',
-    margin: -20,
-    padding: 10,
+    paddingBottom: 10,
     // backgroundColor: '#E8D9D9',
     // backgroundColor: '#c3612c',
     textAlign: 'center',
@@ -54,7 +53,7 @@ const colors = {
 
 const swatchContainer = {
     height: 20,
-    width: 70,
+    width: 65,
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
     border: '3px solid white',
     borderRadius: 3,

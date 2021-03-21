@@ -4,15 +4,15 @@ import { PaperContext } from '../../../Paper'
 import ColorPicker from '../../ColorPicker'
 
 export default function Column() {
-    const { groupApply, eraseEnabled } = useContext(PaperContext)
+    const { bulkColor, eraseEnabled } = useContext(PaperContext)
     const [colorPickerOpen, toggleColorPicker] = useState(false)
     const [color, setColor] = useState({ hex: ''})
 
     const openColorPicker = () => {
         if (eraseEnabled) {
             setColor('#fff')
-        } else if (groupApply.enable) {
-            setColor(groupApply.color)
+        } else if (bulkColor.enable) {
+            setColor(bulkColor.color)
         } else if (!colorPickerOpen) {
             toggleColorPicker(true)
         } else {
@@ -21,16 +21,16 @@ export default function Column() {
     }
 
     const eraseOrApplyColor = useCallback((e) => {
-        if (e.nativeEvent.which === 1 && (groupApply.enable || eraseEnabled)) {
-            if (groupApply.enable) {
-                setColor(groupApply.color)
+        if (e.nativeEvent.which === 1 && (bulkColor.enable || eraseEnabled)) {
+            if (bulkColor.enable) {
+                setColor(bulkColor.color)
             }
 
             if (eraseEnabled) {
                 setColor('#fff')   
             }
         }
-    }, [groupApply, eraseEnabled])
+    }, [bulkColor, eraseEnabled])
 
     const colorPickerProps = {
         color,

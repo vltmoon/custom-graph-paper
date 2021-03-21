@@ -10,6 +10,7 @@ export default function Header() {
 }
 
 const header = {
+	marginTop: 20,
     fontSize: 30,
     alignSelf: 'center'
 }

@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Grid, ResizeGraph, GroupColorApply, Erase } from './views/Grid'
 import { RecentColors, Header, Footer } from './views'
+import { BulkColor } from './components'
 
 export const PaperContext = React.createContext({})
-export const defaultGroupColorState = { color: { hex: '' }, enable: false }
+export const defaultBulkColor = { color: { hex: '' }, enable: false }
 export const defaultSize = { rows: 14, cols: 47 }
 
 export default function Paper() {
     const [usedColors, setUsedColors] = useState([])
-    const [groupApply, setGroupApply] = useState(defaultGroupColorState)
+    const [bulkColor, setBulk] = useState(defaultBulkColor)
     const [graphSize, setGraphSize] = useState(defaultSize)
     const [eraseEnabled, setEraseEnabled] = useState(false)
 
     const contextValue = {
         usedColors,
         setUsedColors,
-        groupApply,
+        bulkColor,
         setGraphSize,
         graphSize,
-        setGroupApply,
+        setBulk,
         eraseEnabled,
         setEraseEnabled
     }
@@ -31,7 +31,7 @@ export default function Paper() {
                     <Header />
 
                     <div style={colorFeatures}>
-                        <GroupColorApply />
+                        <BulkColor />
                         <Erase />
                     </div>
 
@@ -80,7 +80,5 @@ const gridFeatures = {
     marginTop: 20
 }
 
-Paper.propTypes = {
-};
 
 // backgroundColor: '#ecd6d0'

@@ -30,22 +30,34 @@ export default function ResizeGraph() {
 
     return (
         <div style={parent}>
-            <input
-                {...defaultInputProps}
-                value={resize.rows}
-                onChange={changeNumOfRows}/>
-                Rows
-            <input
-                {...defaultInputProps}
-                value={resize.cols}
-                onChange={changeNumOfCols}/>
-                Cols
-            <button onClick={resizeGraph} disabled={disableBtn}>resize my paper</button>
+            <div style={inputs}>
+                <div style={initialInput}>
+                    <input
+                        {...defaultInputProps}
+                        value={resize.rows}
+                        onChange={changeNumOfRows}
+                        style={{marginRight: 5}}
+                        />
+                    Rows
+                </div>
+                <div>
+                    <input
+                        {...defaultInputProps}
+                        value={resize.cols}
+                        onChange={changeNumOfCols}
+                        style={{marginRight: 5}}
+                        />
+                    Cols
+                </div>
+            </div>
+            <button onClick={resizeGraph} disabled={disableBtn}>resize</button>
         </div>
     );
 }
 
 const parent = {
+    display: 'flex',
+    alignItems: 'center',
     marginRight: 20,
     padding: 20,
     height: 70,
@@ -54,4 +66,14 @@ const parent = {
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, .2)',
     backgroundColor: '#f7f7f7'
 
+}
+
+const inputs = {
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: 10
+}
+
+const initialInput = {
+    marginBottom: 10
 }
